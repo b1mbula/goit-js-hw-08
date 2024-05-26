@@ -91,6 +91,22 @@ const imgLink = document.querySelector(".gallery-link");
 imagesUl.addEventListener("click", (e) => {
   if (e.target === e.currentTarget) return;
   const imgEl = document.querySelector(".gallery-image");
-  const imgData = e.target.dataset.source;
-  console.log(imgData);
+  const instance = basicLightbox.create(
+    `<img src=${e.target.dataset.source}>`,
+    {
+      onShow: (instance) => {
+        window.addEventListener("keydown", (e) => {
+          if (e.code === "Escape") {
+            instance.close();
+          }
+        });
+      },
+    },
+    {
+      onClose: (instance) => {
+        window.removeEventListener;
+      },
+    }
+  );
+  instance.show();
 });
